@@ -1,0 +1,64 @@
+/**
+ * Variables
+ */
+
+@neutralColor: #ccc;
+
+@fancyColor: #ff7d2a;
+@fancyColorInverse: #fff;
+
+/**
+ * Styling
+ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    width: 150px;
+}
+
+form {
+    text-align: center;
+}
+
+input {
+    margin-top: 5px;
+    border-radius: 4px;
+    outline: 0;
+
+    &:not([type=submit]) {
+        padding: 6px;
+        width: 100%;
+        border: 1px solid @neutralColor;
+
+        &:focus {
+            border-color: darken(@fancyColor, 10%);
+            box-shadow: 0 0 12px fade(@fancyColor, 20%);
+        }
+    }
+
+    &[type=submit] {
+        margin-top: 10px;
+        padding: 6px 10px;
+        background-color: @fancyColor;
+        border: 1px solid darken(@fancyColor, 10%);
+        color: @fancyColorInverse;
+        cursor: pointer;
+
+        &:hover {
+            border-color: darken(@fancyColor, 25%);
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.2);
+        }
+
+        &:focus {
+            border-color: darken(@fancyColor, 25%);
+        }
+
+        &:active {
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.5);
+        }
+    }
+    }
+}
