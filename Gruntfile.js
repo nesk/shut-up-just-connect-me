@@ -7,7 +7,8 @@ module.exports = function(grunt) {
         less: {
             popup: {
                 files: {
-                    'build/stylesheets/popup.css': 'stylesheets/popup.less'
+                    'build/stylesheets/popup.css': 'stylesheets/popup.less',
+                    'build/stylesheets/transition.css': 'stylesheets/transition.less'
                 }
             }
         },
@@ -22,6 +23,12 @@ module.exports = function(grunt) {
             popup: {
                 files: {
                     'build/scripts/popup.js': ['scripts/auth.js', 'scripts/popup.js']
+                }
+            },
+
+            transition: {
+                files: {
+                    'build/scripts/transition.js': ['scripts/transition.js']
                 }
             }
         },
