@@ -7,6 +7,11 @@
 @fancyColor: #ff7d2a;
 @fancyColorInverse: #fff;
 
+@fontSize: 12px;
+
+@bodyWidth: 250px;
+@panelMarginRight: 8px;
+
 /**
  * Styling
  */
@@ -16,12 +21,21 @@
 }
 
 body {
-    width: 150px;
-    font-size: 10px;
+    width: @bodyWidth;
+    font-family: 'Lato';
+    font-size: @fontSize;
 }
 
-form {
-    text-align: center;
+p {
+    margin-top: 0;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+form input[type=submit] {
+    margin-top: 10px;
 }
 
 input {
@@ -29,7 +43,7 @@ input {
     border-radius: 4px;
     outline: 0;
 
-    &:not([type=submit]) {
+    &:not([type=submit]):not([type=button]) {
         padding: 6px;
         width: 100%;
         border: 1px solid @neutralColor;
@@ -40,8 +54,7 @@ input {
         }
     }
 
-    &[type=submit] {
-        margin-top: 10px;
+    &[type=submit], &[type=button] {
         padding: 6px 10px;
         background-color: @fancyColor;
         border: 1px solid darken(@fancyColor, 10%);
@@ -61,6 +74,36 @@ input {
             box-shadow: inset 0 0 12px rgba(0,0,0,0.5);
         }
     }
+}
+
+.text-center {
+    text-align: center;
+}
+
+#panel-list {
+    white-space: nowrap; // Avoid any line-breaking between the panels, showing them on a single line
+    font-size: 0; // Hide any whitespace between the panels
+
+    transition: margin-left 200ms linear;
+
+    .panel {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: @panelMarginRight;
+        width: @bodyWidth; height: 100%;
+        
+        // Reset those two properties to normal values
+        white-space: normal;
+        font-size: @fontSize;
+    }
+
+    &.display-panel-2 {
+        margin-left: (@bodyWidth + @panelMarginRight) * -1;
+    }
+}
+
+#auth-form {
+    margin-top: 8px;
 }
 
 #overlay {
