@@ -32,6 +32,11 @@ module.exports = function(grunt) {
                 dest: 'build/manifest.json'
             },
 
+            fonts: {
+                src: 'fonts/*',
+                dest: 'build/'
+            },
+
             icons: {
                 src: 'icons/*',
                 dest: 'build/'

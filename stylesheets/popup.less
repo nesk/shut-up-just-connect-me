@@ -13,7 +13,18 @@
 @panelMarginRight: 8px;
 
 /**
- * Styling
+ * Fonts
+ */
+
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../fonts/Lato-Normal.woff);
+}
+
+/**
+ * Global styling
  */
 
 * {
@@ -42,6 +53,8 @@ input {
     margin-top: 5px;
     border-radius: 4px;
     outline: 0;
+    font-family: 'Lato';
+    font-size: @fontSize;
 
     &:not([type=submit]):not([type=button]) {
         padding: 6px;
@@ -76,9 +89,17 @@ input {
     }
 }
 
+/**
+ * Global classes
+ */
+
 .text-center {
     text-align: center;
 }
+
+/**
+ * Specific elements
+ */
 
 #panel-list {
     white-space: nowrap; // Avoid any line-breaking between the panels, showing them on a single line
