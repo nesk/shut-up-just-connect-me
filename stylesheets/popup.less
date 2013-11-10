@@ -17,6 +17,7 @@
 
 body {
     width: 150px;
+    font-size: 10px;
 }
 
 form {
@@ -60,5 +61,20 @@ input {
             box-shadow: inset 0 0 12px rgba(0,0,0,0.5);
         }
     }
+}
+
+#overlay {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    border-radius: 2px;
+    background: rgba(0,0,0,0.8) url(../images/loading.gif) center center no-repeat;
+    opacity: 0;
+    
+    pointer-events: none;
+    transition: opacity 200ms linear;
+
+    &.active {
+        pointer-events: auto;
+        opacity: 1;
     }
 }
