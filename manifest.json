@@ -8,9 +8,9 @@
     "author": "Johann Pardanaud",
 
     "icons": {
-        "16": "icons/icon-16.png",
-        "48": "icons/icon-48.png",
-        "128": "icons/icon-128.png"
+        "16": "assets/icons/icon-16.png",
+        "48": "assets/icons/icon-48.png",
+        "128": "assets/icons/icon-128.png"
     },
 
     "permissions": [
@@ -29,8 +29,8 @@
 
     "browser_action": {
         "default_icon": {
-            "19": "icons/icon-19.png",
-            "38": "icons/icon-38.png"
+            "19": "assets/icons/icon-19.png",
+            "38": "assets/icons/icon-38.png"
         },
 
         "default_title": "Shut up! Just connect me...",
