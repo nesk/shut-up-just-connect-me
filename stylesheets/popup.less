@@ -101,6 +101,20 @@ input {
  * Specific elements
  */
 
+#alert {
+    display: none;
+    padding: 8px;
+    border: 1px solid #faebcc;
+    border-radius: 4px;
+    background-color: #fcf8e3;
+    text-align: left;
+    color: #c09853;
+
+    &.visible {
+        display: block;
+    }
+}
+
 #panel-list {
     white-space: nowrap; // Avoid any line-breaking between the panels, showing them on a single line
     font-size: 0; // Hide any whitespace between the panels
@@ -137,7 +151,7 @@ input {
     pointer-events: none;
     transition: opacity 200ms linear;
 
-    &.active {
+    &.visible {
         pointer-events: auto;
         opacity: 1;
     }

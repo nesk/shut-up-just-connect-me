@@ -23,3 +23,7 @@ function connect(login, password, successCallback, failureCallback) {
 
     xhr.send(data);
 }
+
+function disconnect() {
+    chrome.storage.sync.remove(['login', 'password']);
+}
