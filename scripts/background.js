@@ -4,7 +4,7 @@
  * him to the webpage he asked for... BUT! This is not possible. Well, not
  * immediately. When the UCOPIA firewall responds to your authentication request,
  * it could seems logical that the user is authenticated, however this is not the
- * case... Once you get the response, there is a delay (~1s) before the user is
+ * case... Once you get the response, there is a delay (~1.5s) before the user is
  * fully authenticated and can connect to a website. So, don't freak out because
  * I put a `setTimeout` call, I didn't have the choice.
  */
@@ -42,7 +42,7 @@ function interceptControllerRequest(details) {
             chrome.tabs.update(details.tabId, {
                 url: requestedURL
             });
-        }, 1000);
+        }, 1500);
     }, function failure() {
         // If the authentication fails, fallback to the default behavior of the UCOPIA firewall
         chrome.tabs.update(details.tabId, {
