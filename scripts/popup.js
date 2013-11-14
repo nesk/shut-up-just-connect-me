@@ -13,13 +13,13 @@ document.querySelector('#auth-form').addEventListener('submit', function(event) 
 
         document.querySelector('#overlay').classList.add('active');
 
-        connect(login, password);
-
-        // Save the credential
-        chrome.storage.sync.set({
-            login: login,
-            password: password
-        });
+        if(connect(login, password)) {
+            // Save the credential
+            chrome.storage.sync.set({
+                login: login,
+                password: password
+            });
+        }
     }
 
 }, false);

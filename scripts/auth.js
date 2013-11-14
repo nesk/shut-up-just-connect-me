@@ -13,5 +13,7 @@ function connect(login, password) {
     xhr.open('POST', 'https://controller.sciences-ulyon.fr/portal_api.php', false);
     xhr.send(data);
 
-    return xhr;
+    var data = JSON.parse(xhr.responseText);
+
+    return !data.error;
 }
