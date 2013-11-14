@@ -24,24 +24,29 @@ function interceptControllerRequest(details) {
     var url = details.url,
         requestedURL = decodeURIComponent(url.substring(url.indexOf('=') + 1));
 
-    // Display the waiting page
+    /*  Display the transition page with a tab update, the `redirectUrl` property
+        that could be returned by this callback doesn't seem to work with pages
+        provided by an extension. */
     chrome.tabs.update(details.tabId, {
         url: chrome.extension.getURL('templates/transition.html')
     });
 
     // Display the requested page once the authentication is completed
-    if(connect(credential.login, credential.password)) {
+    connect(credential.login, credential.password, function success() {
+        // WOOOOOOO!! TIMER \o/
         setTimeout(function() {
             chrome.tabs.update(details.tabId, {
                 url: requestedURL
             });
         }, 1000);
+    }, function failure() {
+        // If the authentication fails, fallback to the default behavior of the UCOPIA firewall
+        chrome.tabs.update(details.tabId, {
+            url: url
+        });
+    });
 
-        return { cancel: true };
-    }
-
-    // If the authentication fails, fallback to the default behavior of the UCOPIA firewall
-    return { cancel: false };
+    return { cancel: true };
 }
 
 function loadCredential() {
