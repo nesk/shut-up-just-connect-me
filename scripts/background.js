@@ -21,6 +21,10 @@ var storage = chrome.storage.sync,
  */
 
 function interceptControllerRequest(details) {
+    // If there's no credential, fallback to the default behavior of the UCOPIA firewall
+    if(!credential.login || !credential.password)
+        return { cancel: false };
+
     var url = details.url,
         requestedURL = decodeURIComponent(url.substring(url.indexOf('=') + 1));
 
