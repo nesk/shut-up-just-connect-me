@@ -20,19 +20,28 @@ var storage = chrome.storage.sync,
  * Functions
  */
 
-function interceptControllerRequest (details) {
+function interceptControllerRequest(details) {
     var url = details.url,
         requestedURL = decodeURIComponent(url.substring(url.indexOf('=') + 1));
 
-    connect(credential.login, credential.password);
+    // Display the waiting page
+    chrome.tabs.update(details.tabId, {
+        url: chrome.extension.getURL('templates/transition.html')
+    });
 
-    setTimeout(function() {
-        chrome.tabs.update(details.tabId, {
-            url: requestedURL
-        });
-    }, 1000);
+    // Display the requested page once the authentication is completed
+    if(connect(credential.login, credential.password)) {
+        setTimeout(function() {
+            chrome.tabs.update(details.tabId, {
+                url: requestedURL
+            });
+        }, 1000);
 
-    return { cancel: true };
+        return { cancel: true };
+    }
+
+    // If the authentication fails, fallback to the default behavior of the UCOPIA firewall
+    return { cancel: false };
 }
 
 function loadCredential() {
@@ -53,7 +62,7 @@ chrome.webRequest.onBeforeRequest.addListener(
     ['blocking']
 );
 
-storage.onChanged.addListener(loadCredential);
+chrome.storage.onChanged.addListener(loadCredential);
 
 // At launch, load the user credential for the first time
 loadCredential();
