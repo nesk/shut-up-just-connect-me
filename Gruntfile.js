@@ -48,6 +48,19 @@ module.exports = function(grunt) {
                 src: 'templates/**',
                 dest: 'build/'
             }
+        },
+
+        compress: {
+            release: {
+                options: {
+                    archive: 'release.zip',
+                    pretty: true
+                },
+
+                expand: true,
+                cwd: 'build',
+                src: ['**']
+            }
         }
 
     });
@@ -56,7 +69,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-less');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-compress');
 
     grunt.registerTask('default', ['clean', 'less', 'uglify', 'copy']);
+    grunt.registerTask('release', ['default', 'compress']);
 
 };
